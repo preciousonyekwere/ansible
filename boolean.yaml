@@ -1,0 +1,12 @@
+- name: play example #1
+  hosts: prod
+  vars:
+    usercharlie: false
+  tasks:
+  - name: #1 manage user bob
+    user: 
+     name: bob
+  - name: #2 manage user charlie
+    user:
+     name: charlie
+    when: usercharlie 
