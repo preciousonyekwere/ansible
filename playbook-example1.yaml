@@ -1,0 +1,19 @@
+- name: play example #1
+  hosts: web,db
+  tasks:
+  - name: #1 manage presh user
+    user: 
+     name: presh
+     uid: 5000
+     state: present
+  - name: #2 install nginx
+    apt: 
+     name: nginx
+     state: present
+- name: play example #2
+  hosts: prod
+  tasks:
+  - name: #3 manage a file
+    copy: 
+     dest: /tmp/file-from-ansible
+     content: hello from ansible
