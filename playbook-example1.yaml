@@ -1,5 +1,7 @@
 - name: play example #1
   hosts: web,db
+  vars:
+   filetext: happy new year
   tasks:
   - name: #1 manage presh user
     user: 
@@ -10,10 +12,20 @@
     apt: 
      name: nginx
      state: present
-- name: play example #2
-  hosts: prod
-  tasks:
-  - name: #3 manage a file
+  - name: #3 file management
+    copy:
+     dest: /tmp/example2-file-1
+     content: "{{ filetext }}"
+  - name: #4 file management
+    copy:
+     dest: /tmp/example2-file-2
+     content: "{{ filetext }}"
+  - name: #5 file management
     copy: 
-     dest: /tmp/file-from-ansible
-     content: hello from ansible
+     dest: /tmp/example2-file-3
+     content: "{{ filetext }}"
+  - name: #6 file management
+    copy: 
+     dest: /tmp/example2-file-4
+     content: "{{ filetext }}"
+
