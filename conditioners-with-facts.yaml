@@ -1,0 +1,8 @@
+- name: lets learn about fact plus conditioners
+  hosts: db,prod
+  vars:
+  tasks:
+  - name: manage dave user
+    user: 
+     name: dave
+    when: ansible_facts['distribution'] == 'CentOS'

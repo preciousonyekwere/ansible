@@ -1,0 +1,10 @@
+- name: "lets learn about facts"
+  hosts: db,prod
+  tasks:
+  - name: "manage a file with content from fact"
+    copy:
+      dest: "/tmp/file-containing-fact"
+      content: |
+              The distribution is {{ ansible_facts['distribution'] }}
+              The fqdn is {{ ansible_facts['fqdn'] }}
+              the hostname is {{ ansible_facts['hostname'] }}
