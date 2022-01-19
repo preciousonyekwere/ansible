@@ -1,0 +1,32 @@
+- name: play example #1
+  hosts: web,db
+  vars:
+   filetext: |
+          loop files
+          which have 
+          multiline content 
+           
+  tasks:
+  - name: #1 manage presh user
+    user: 
+     name: "{{ item }}"
+     state: absent
+    loop: 
+    - alice 
+    - bob
+    - charlie
+    - eve
+    - erica
+  - name: #2 install nginx
+    apt: 
+     name: nginx
+     state: present
+  - name: #3 file management
+    copy:
+     content: "{{ filetext }}"
+     dest: "{{ item }}"
+    loop:
+    - /tmp/loopfile1
+    - /tmp/loopfile2
+    - /tmp/loopfile3
+    - /tmp/loopfile  
