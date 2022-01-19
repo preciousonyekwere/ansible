@@ -1,0 +1,9 @@
+- name: lets learn about templates
+  hosts: db,web
+  vars:
+  tasks:
+  - name: manage a file from template fact
+    template:
+      src: ./template.j2
+      dest: /tmp/file-from-template
+          
