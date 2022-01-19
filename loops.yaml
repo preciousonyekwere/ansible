@@ -1,0 +1,23 @@
+- name: play example #1
+  hosts: web,db
+  vars:
+   filetext: happy new year
+  tasks:
+  - name: #1 manage presh user
+    user: 
+     name: presh
+     uid: 5000
+     state: present
+  - name: #2 install nginx
+    apt: 
+     name: nginx
+     state: present
+  - name: #3 file management
+    copy:
+     content: "{{ filetext }}"
+     dest: "{{ item }}"
+    loop:
+    - /tmp/loopfile1
+    - /tmp/loopfile2
+    - /tmp/loopfile3
+    - /tmp/loopfile  
