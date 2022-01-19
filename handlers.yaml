@@ -1,0 +1,16 @@
+- name: lets learn handlers
+  hosts: prod
+  vars:
+  tasks: 
+  - name: manage erica user
+    user:
+      name: erica
+      home: /home/erica
+    notify:
+    - manage erica homedir
+  handlers:
+  - name: manage erica homedir
+    copy: 
+      dest: /home/erica/welcome
+      content: |
+              Hello Erica. welcome to the team.
