@@ -1,0 +1,25 @@
+- name: to install jenkins
+  hosts: web
+  vars: 
+    keyurl: https://pkg.jenkins.io/debian/jenkins.io.key
+    command: echo deb https://pkg.jenkins.io/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null    
+    jenkinspackage: jenkins
+    javapackage: openjdk-11-jdk
+  tasks:
+  - name: installing java
+    apt:
+      name: "{{ javapackage }}"
+      state: present
+      update_cache: true
+  - name: managing jenkins key
+    apt_key:
+      url: "{{ keyurl }}"
+  - name: shell command for jenkins
+    shell:
+      cmd: "{{ command }}"
+  - name: installing jenkins
+    apt:
+      name: "{{ jenkinspackage }}"
+      state: present
+      update_cache: true
+
