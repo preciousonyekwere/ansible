@@ -1,0 +1,4 @@
+- name: use roles
+  hosts: web
+  roles:
+  - role: jenkins
