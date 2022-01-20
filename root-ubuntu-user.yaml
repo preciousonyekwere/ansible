@@ -1,0 +1,21 @@
+- name: run task as ubuntu user instead of root
+  hosts: prod
+  remote_user: ubuntu
+  become: true
+  tasks:
+  - name: #1 manage k8s users
+    user:
+      name: k8s
+      uid: 5001
+      state: present
+  - name: #2 install nginx
+    apt: 
+      name: nginx
+      state: present
+- name: play example #2
+  hosts: prod
+  tasks:
+  - name: manage a file
+    copy: 
+      dest: /tmp/file-from-ansible
+      content: hello from ansible
